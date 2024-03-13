@@ -59,6 +59,22 @@ public class Main {
                                     objCurso.listarEstudiantes();
                                 }
                                 break;
+                            case 3:// Eliminar estudiantes a un curso en
+                                //1. listar los cursos
+                                objGestion.listarTodosLosCursos();                                //2. preguntar el codigo del curso
+                                //2. preguntar el codigo
+                                System.out.println("Ingresa el codigo del curso donde deseas eliminar el estudiante");
+                                codigo = objScan.next();
+                                //3. buscar el curso que tenga ese codigo
+                                Curso objcurso =  objGestion.buscarCursoPorCodigo(codigo);
+                                if(objcurso == null){
+                                    System.out.println("El codigo ingresado no coincide con ningun curso");
+                                }else{
+                                    //4. eliminar el estudiante de ese curso encontrado
+                                    objcurso.eliminarEstudiante(objScan);
+                                }
+
+                            break;
                         }
                     }while(option3 != 4);
                 case 2:
@@ -96,7 +112,7 @@ public class Main {
                     }while(option2 != 4);
 
             }
-            break;
+         //break;
         }while(option != 3);
 
     }
