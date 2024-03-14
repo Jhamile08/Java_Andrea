@@ -7,7 +7,7 @@ public class Main {
         // 1. agregar, eliminar, buscar pór categoria,listar inventario, 6  salir
         String option = "";
         Inventario objInventario = new Inventario();
-
+        int id = 1;
         do {
             option = JOptionPane.showInputDialog("1. agregar producto\n"+
                     "2. eliminar\n"+
@@ -17,20 +17,35 @@ public class Main {
 
             );
 
+
             switch (option) {
                 case "1":
-                    String nombre = JOptionPane.showInputDialog("Ingrese el nombre del producto: ");
-                    String precio = JOptionPane.showInputDialog("Ingrese el precio del producto: ");
-                    String categoria = JOptionPane.showInputDialog("Ingrese la categoria del producto: ");
-                    String marca = JOptionPane.showInputDialog("Ingrese la marca del producto: ");
+                        String nombre = JOptionPane.showInputDialog("Ingrese el nombre del producto: ");
+                        String precio = JOptionPane.showInputDialog("Ingrese el precio del producto: ");
+                        String categoria = JOptionPane.showInputDialog("Ingrese la categoria del producto: ");
+                        String marca = JOptionPane.showInputDialog("Ingrese la marca del producto: ");
 
-                    ProductoEspecifico objProducto = new ProductoEspecifico(2, nombre, Integer.parseInt(precio), categoria, marca);
-
-                    objInventario.agregarProductos(objProducto);
+                        ProductoEspecifico objProducto = new ProductoEspecifico(id, nombre, Integer.parseInt(precio), categoria, marca);
+                        id++;
+                        objInventario.agregarProductos(objProducto);
                     break;
                 case "2":
                     objInventario.listarProductos();
+                    String eliminadoInput = JOptionPane.showInputDialog("Digite el id para eliminar el producto: ");
+                    objInventario.eliminarProducto(Integer.parseInt(eliminadoInput));
                     break;
+                case "3":
+                    String buscado = JOptionPane.showInputDialog("Ingresa el nombre de la categoria para buscar: ");
+                    if (objInventario.buscarPorCategoria(buscado) == null) {
+                        System.out.println("No se encontró");
+                    } else {
+                        System.out.println(objInventario.buscarPorCategoria(buscado));
+                    }
+
+                    break;
+                case "4":
+
+                    objInventario.listarProductos();
             }
         }while (!option.equals("5"));
 
