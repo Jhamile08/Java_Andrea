@@ -13,6 +13,7 @@ public class GestionCurso {
 
         System.out.println("Ingresa el codigo del nuevo curso");
         String codigo = objScan.next();
+
         this.buscarCursoPorCodigo(codigo);
         if(this.buscarCursoPorCodigo(codigo) != null){
             System.out.println("Ya existe un curso con este codigo");

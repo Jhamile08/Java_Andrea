@@ -10,6 +10,8 @@ public class Empleado extends Persona{
         this.salario = salario;
     }
 
+
+
     //setters and getters
     public int setIdEmpleado(int idEmpleado){
         return idEmpleado;
