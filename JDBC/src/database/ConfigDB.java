@@ -1,8 +1,6 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 // Esta clase se encargara de establecer y cerrar la conexion en la base de datos
 public class ConfigDB {
@@ -25,7 +23,7 @@ public class ConfigDB {
         }catch (SQLException error){
             System.out.println("ERROR >> error al conectar la base de datos" + error.getMessage());
         }
-        return null;
+        return objConnection;
     }
 
     public static void closeConnection(){
