@@ -30,6 +30,12 @@ public class Main {
                 case "2":
                     coderController.create();
                     break;
+                case "4":
+                    coderController.delete();
+                    break;
+                case "5":
+                    coderController.getByName();
+                    break;
             }
         }while(!option.equals("6"));
 
