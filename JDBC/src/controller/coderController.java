@@ -66,15 +66,12 @@ public class coderController {
 
     }
     public static void getByName(){
-        
         String nameFound = JOptionPane.showInputDialog("\n Enter the name to find: ");
-
         CoderModel objCoderModel = new CoderModel();
 
         String listaString = "COINCIDENCIAS \n";
         for(Coder iterador: objCoderModel.findByname(nameFound)){
-            Coder objCoder = (Coder) iterador;
-                    listaString += objCoder.toString() + "\n";
+            listaString += iterador.toString() + "\n";
 
         }
         JOptionPane.showMessageDialog(null, listaString);

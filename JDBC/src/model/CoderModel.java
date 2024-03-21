@@ -143,8 +143,9 @@ public class CoderModel implements CRUD {
     }
 
     public List<Coder> findByname(String nameFound){
+        //se crea la lista
         List<Coder> listCoders = new ArrayList<>();
-        //1. abrimos la conexion
+        //abrimos la conexion
         Connection objConnection = ConfigDB.openConnection();
 
 
@@ -157,12 +158,14 @@ public class CoderModel implements CRUD {
             objPrepare.setString(1,"%"+"name"+"%");
             //Ejecutamos el Query
             ResultSet objResult = objPrepare.executeQuery();
+
             while(objResult.next()) {
                Coder objCoder = new Coder();
+                objCoder.setId(objResult.getInt("id"));
                 objCoder.setAge(objResult.getInt("age"));
                 objCoder.setName(objResult.getString("name"));
                 objCoder.setClan(objResult.getString("clan"));
-                objCoder.setId(objResult.getInt("id"));
+
                 listCoders.add(objCoder);
             }
         }catch (Exception e){
