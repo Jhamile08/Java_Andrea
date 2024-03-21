@@ -12,9 +12,9 @@ public class ConfigDB {
             //Llamamos al driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             //Creamos la variable de conexion
-            String url = "jdbc:mysql://localhost:3306/_01_jdbc_lovelace";
-            String user = "root";
-            String password = "Rlwl2023.";
+            String url = "jdbc:mysql://bchcwv5hcrawhixlfs7m-mysql.services.clever-cloud.com/bchcwv5hcrawhixlfs7m";
+            String user = "uv79jpkrvsptjpwe";
+            String password = "PuWskLrsXAaHFz6AwIwv";
             //establecer conexion
             objConnection =  (Connection) DriverManager.getConnection(url,user,password);
             System.out.println("Me conecte perfectamente");

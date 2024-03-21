@@ -78,5 +78,29 @@ public class coderController {
 
     }
 
+    public static void upDate(){
+        //1. Utilizar el modelo
+        CoderModel objCoderModel = new CoderModel();
+
+        String listCoders = getAllString();
+       int idUpDate = Integer.parseInt(JOptionPane.showInputDialog(listCoders+"\n Enter the Coder ID to edit: "));
+       //Obteniendo un coder por el id ingresado
+       Coder objCoder = objCoderModel.findById(idUpDate);
+
+       //Validamos que exista el coder
+       if(objCoder == null){
+           JOptionPane.showMessageDialog(null, "Coder not found");
+       }else {
+           String name = JOptionPane.showInputDialog(null,"Enter new name", objCoder.getName());
+           //Para convertir de un entero a String utilizamos String.valueOf()
+           int age = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter new age", String.valueOf(objCoder.getAge())));
+           String clan = JOptionPane.showInputDialog(null, "Enter new clan: ", objCoder.getClan());
+
+           objCoder.setName(name);
+           objCoder.setClan(clan);
+           objCoder.setAge(age);
+           objCoderModel.upDate(objCoder);
+       }
+    }
 
 }

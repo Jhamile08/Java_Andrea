@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
-
+        ConfigDB.openConnection();
 
         String option = "";
         do {
@@ -22,6 +22,7 @@ public class Main {
                     5. Get coder by name.
                     6. Exit
                     
+                    
                     Choose an option:
                     """);
             switch (option){
@@ -30,6 +31,9 @@ public class Main {
                     break;
                 case "2":
                     coderController.create();
+                    break;
+                case "3":
+                    coderController.upDate();
                     break;
                 case "4":
                     coderController.delete();
