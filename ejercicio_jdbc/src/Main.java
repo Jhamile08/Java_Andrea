@@ -1,5 +1,6 @@
 
 import controller.AuthorController;
+import controller.BookController;
 import database.ConfigDB;
 import entity.Author;
 
@@ -44,6 +45,7 @@ public class Main {
                     AuthorController.upDate();
                     break;
                 case "6":
+
                     String option2 = "";
                     do {
                         option2 = JOptionPane.showInputDialog("""
@@ -61,6 +63,23 @@ public class Main {
                     """);
                         switch (option2){
                             case "1":
+                                BookController.create();
+                            break;
+                            case "2":
+                                BookController.getAll();
+                                break;
+                            case "3":
+                                BookController.getById();
+                                break;
+                            case "4":
+                                BookController.getByName();
+                                break;
+                            case "6":
+                                BookController.delete();
+                                break;
+                            case "7":
+                                BookController.upDate();
+                                break;
                         }
                     }while(!option.equals("6"));
 

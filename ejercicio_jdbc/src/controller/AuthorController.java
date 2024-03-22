@@ -65,7 +65,7 @@ public class AuthorController {
         int id = Integer.parseInt(JOptionPane.showInputDialog("\n Enter the id to find: "));
         AuthorModel objAuthorModel = new AuthorModel();
 
-        String listaString = "El autor con id "+id+" es:\n";
+        String listaString = "the author with "+id+" is:\n";
         for(Author iterador: objAuthorModel.foundById(id)){
             listaString += iterador.toString() + "\n";
 

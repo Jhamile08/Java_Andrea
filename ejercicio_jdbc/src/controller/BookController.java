@@ -38,20 +38,20 @@ public class BookController{
     }
     public static void getAll(){
 
-        BookModel objBook = new BookModel();
-        String listCoders = "coder list\n";
-        for(Object iterador : objBook.findAll()){
+        BookModel objBookModel = new BookModel();
+        String listBook = "Book list\n";
+        for(Object iterador : objBookModel.findAll()){
             //Convert the object to author
-            Book objCoder = (Book) iterador;
-            listCoders += objCoder.toString() + "\n";
+            Book objBook = (Book) iterador;
+            listBook += objBook.toString() + "\n";
         }
 
-        JOptionPane.showMessageDialog(null,listCoders);
+        JOptionPane.showMessageDialog(null,listBook);
     }
 
     public static String getAllString(){
         BookModel objModel = new BookModel();
-        String listBooks = "books list\n";
+        String listBooks = "Books list\n";
         for(Object iterador : objModel.findAll()){
             //Convert the object to author
             Book objBook = (Book) iterador;
@@ -74,5 +74,57 @@ public class BookController{
             if(confirm == 0) objBookModel.delete(objBook);
         }
     }
+
+    public static void getById(){
+        int id = Integer.parseInt(JOptionPane.showInputDialog("\n Enter the book id to find: "));
+        BookModel objBookModel = new BookModel();
+
+        String listaString = "The book with id "+id+" is:\n";
+        for(Book iterador: objBookModel.foundById(id)){
+            listaString += iterador.toString() + "\n";
+
+        }
+        JOptionPane.showMessageDialog(null, listaString);
+
+    }
+    public static void getByName(){
+        String name = JOptionPane.showInputDialog("\n Enter the book name to find: ");
+        BookModel objBookModel = new BookModel();
+
+        String listaString = "The book with name "+name+" is:\n";
+        for(Book iterador: objBookModel.foundByName(name)){
+            listaString += iterador.toString() + "\n";
+
+        }
+        JOptionPane.showMessageDialog(null, listaString);
+
+    }
+
+    public static void upDate(){
+        //Use the model
+        BookModel objBookModel = new BookModel();
+
+        String listAuthors = getAllString();
+        int idUpDate = Integer.parseInt(JOptionPane.showInputDialog(listAuthors+"\n Enter the Book ID to edit: "));
+        //Get the author = id
+        Book objBook = objBookModel.findById(idUpDate);
+
+        //Validate to exists author
+        if(objBook== null){
+            JOptionPane.showMessageDialog(null, "Book not found");
+        }else {
+            String title = JOptionPane.showInputDialog(null,"Enter new title", objBook.getTitle());
+            int year_publication = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter new publication year: ", objBook.getYear_publication()));
+            double price = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter new price: ", objBook.getPrice()));
+            int id_author = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter new book author  id: ", objBook.getId_author()));
+
+            objBook.setTitle(title);
+            objBook.setYear_publication(year_publication);
+            objBook.setPrice(price);
+            objBook.setId_author(id_author);
+            objBookModel.upDate(objBook);
+        }
+    }
+
 
 }

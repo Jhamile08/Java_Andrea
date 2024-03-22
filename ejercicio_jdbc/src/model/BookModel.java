@@ -64,10 +64,11 @@ public class BookModel implements CRUD {
             //While exists an author
             while (objResult.next()) {
                 Book objBook = new Book();
-                objPrepare.setString(1, objBook.getTitle());
-                objPrepare.setInt(2, objBook.getYear_publication());
-                objPrepare.setDouble(3, objBook.getPrice());
-                objPrepare.setInt(4, objBook.getId_author());
+                objBook.setId(objResult.getInt("id"));
+                objBook.setTitle(objResult.getString("title"));
+                objBook.setYear_publication(objResult.getInt("year_publication"));
+                objBook.setPrice(objResult.getDouble("price"));
+                objBook.setId_author(objResult.getInt("id_author"));
                 listBooks.add(objBook);
             }
         } catch (SQLException e) {
@@ -89,7 +90,7 @@ public class BookModel implements CRUD {
         boolean isUpdate = false;
         try {
             //SQL
-            String sql = "UPDATE book SET title = ?, year_publication = ?, getPrice = ?, id_author = ?, WHERE id = ?;";
+            String sql = "UPDATE book SET title = ?, year_publication = ?, price = ?, id_author = ? WHERE id = ?;";
             //Create prepared statement
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
             //Asign value to the query
@@ -163,6 +164,7 @@ public class BookModel implements CRUD {
                 objBook.setYear_publication(objResult.getInt("year_publication"));
                 objBook.setPrice(objResult.getDouble("price"));
                 objBook.setId_author(objResult.getInt("id_author"));
+                objBook.setId(objResult.getInt("id"));
             }
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -172,4 +174,110 @@ public class BookModel implements CRUD {
 
         return objBook;
     }
+
+    //Found book by id
+    public List<Book> foundById(int id){
+        //se crea la lista
+        List<Book> listBooks = new ArrayList<>();
+        //abrimos la conexion
+        Connection objConnection = ConfigDB.openConnection();
+
+
+        try {
+            // Sentencia sql
+            String sql = "SELECT * FROM book WHERE id like ?;";
+            // Statement
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            // valor al parametro
+            objPrepare.setInt(1, id);
+            //Ejecutamos el Query
+            ResultSet objResult = objPrepare.executeQuery();
+
+            while(objResult.next()) {
+                Book objBook = new Book();
+                objBook.setTitle(objResult.getString("title"));
+                objBook.setYear_publication(objResult.getInt("year_publication"));
+                objBook.setPrice(objResult.getDouble("price"));
+                objBook.setId_author(objResult.getInt("id_author"));
+                objBook.setId(objResult.getInt("id"));
+
+                listBooks.add(objBook);
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        // Cerrar la conexion
+        ConfigDB.closeConnection();
+        return listBooks;
+    }
+    public List<Book> foundByName(String name){
+        //se crea la lista
+        List<Book> listBooks = new ArrayList<>();
+        //abrimos la conexion
+        Connection objConnection = ConfigDB.openConnection();
+
+
+        try {
+            // Sentencia sql
+            String sql = "SELECT * FROM book WHERE title like ?;";
+            // Statement
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            // valor al parametro
+            objPrepare.setString(1, "%"+name+"%");
+            //Ejecutamos el Query
+            ResultSet objResult = objPrepare.executeQuery();
+
+            while(objResult.next()) {
+                Book objBook = new Book();
+                objBook.setTitle(objResult.getString("title"));
+                objBook.setYear_publication(objResult.getInt("year_publication"));
+                objBook.setPrice(objResult.getDouble("price"));
+                objBook.setId_author(objResult.getInt("id_author"));
+                objBook.setId(objResult.getInt("id"));
+
+                listBooks.add(objBook);
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        // Cerrar la conexion
+        ConfigDB.closeConnection();
+        return listBooks;
+    }
+
+    public List<Book> foundByAuthor(String author){
+        //se crea la lista
+        List<Book> listBooks = new ArrayList<>();
+        //abrimos la conexion
+        Connection objConnection = ConfigDB.openConnection();
+
+
+        try {
+            // Sentencia sql
+            String sql = "SELECT * FROM book WHERE title like ?;";
+            // Statement
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            // valor al parametro
+            objPrepare.setString(1, "%"+author+"%");
+            //Ejecutamos el Query
+            ResultSet objResult = objPrepare.executeQuery();
+
+            while(objResult.next()) {
+                Book objBook = new Book();
+                objBook.setTitle(objResult.getString("title"));
+                objBook.setYear_publication(objResult.getInt("year_publication"));
+                objBook.setPrice(objResult.getDouble("price"));
+                objBook.setId_author(objResult.getInt("id_author"));
+                objBook.setId(objResult.getInt("id"));
+
+                listBooks.add(objBook);
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        // Cerrar la conexion
+        ConfigDB.closeConnection();
+        return listBooks;
+    }
+
 }
