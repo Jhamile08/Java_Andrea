@@ -25,23 +25,23 @@ public class AuthorController {
     }
 
     public static void getAll(){
-        AuthorModel objAuthorModel = new AuthorModel();
+        AuthorModel objModel = new AuthorModel();
         String listAuthors = "Author list\n";
-        for(Object iterator : objAuthorModel.findAll()){
+        for(Object iterator : objModel.findAll()){
             //Convert the object to author
             Author objAuthor = (Author) iterator;
-            listAuthors += objAuthorModel.toString() + "\n";
+            listAuthors += objAuthor.toString() + "\n";
         }
         JOptionPane.showMessageDialog(null, listAuthors);
     }
 
     public static String getAllString(){
         AuthorModel objModel = new AuthorModel();
-        String listAuthors = "coder list\n";
+        String listAuthors = "Author list\n";
         for(Object iterador : objModel.findAll()){
-            //Convertimos del object a coder
-            Author objCoder = (Author) iterador;
-            listAuthors += objCoder.toString() + "\n";
+            //Convert the object to author
+            Author objAuthor = (Author) iterador;
+            listAuthors += objAuthor.toString() + "\n";
         }
         return listAuthors;
     }
@@ -50,7 +50,48 @@ public class AuthorController {
         AuthorModel objAuthorModel = new AuthorModel();
         String listAuthors = getAllString();
 
-        int idDelete = Integer.parseInt(JOptionPane.showInputDialog(listAuthors + "\n Enter the id author to delete: "))
-        Author objAuthor = objAuthorModel.f
+        int idDelete = Integer.parseInt(JOptionPane.showInputDialog(listAuthors + "\n Enter the id author to delete: "));
+        Author objAuthor = objAuthorModel.findById(idDelete);
+        int confirm = 1;
+        if(objAuthor == null){
+            JOptionPane.showMessageDialog(null, "Coder not found");
+        }else{
+            confirm =  JOptionPane.showConfirmDialog(null,"Are you sure that you want to delete author?\n " + objAuthor.toString());
+            if(confirm == 0) objAuthorModel.delete(objAuthor);
+        }
+    }
+// getByName
+    public static void getById(){
+        int id = Integer.parseInt(JOptionPane.showInputDialog("\n Enter the id to find: "));
+        AuthorModel objAuthorModel = new AuthorModel();
+
+        String listaString = "El autor con id "+id+" es:\n";
+        for(Author iterador: objAuthorModel.foundById(id)){
+            listaString += iterador.toString() + "\n";
+
+        }
+        JOptionPane.showMessageDialog(null, listaString);
+
+    }
+    public static void upDate(){
+        //Use the model
+        AuthorModel objAuthorModel = new AuthorModel();
+
+        String listAuthors = getAllString();
+        int idUpDate = Integer.parseInt(JOptionPane.showInputDialog(listAuthors+"\n Enter the author ID to edit: "));
+        //Get the author = id
+        Author objAuthor = objAuthorModel.findById(idUpDate);
+
+        //Validate to exists author
+        if(objAuthor == null){
+            JOptionPane.showMessageDialog(null, "Author not found");
+        }else {
+            String name = JOptionPane.showInputDialog(null,"Enter new name", objAuthor.getName());
+            String nationality = JOptionPane.showInputDialog(null, "Enter new nationality: ", objAuthor.getNationality());
+
+            objAuthor.setName(name);
+            objAuthor.setNationality(nationality);
+            objAuthorModel.upDate(objAuthor);
+        }
     }
 }

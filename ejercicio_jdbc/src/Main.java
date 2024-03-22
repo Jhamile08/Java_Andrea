@@ -21,7 +21,8 @@ public class Main {
                     3. Search author by id
                     4. Delete Author.
                     5. Modify author
-                    6. Exit
+                    6. Menu books
+                    7. Exit
                     
                     
                     Choose an option:
@@ -30,20 +31,41 @@ public class Main {
                 case "1":
                     AuthorController.create();
                     break;
-//                case "2":
-//                    coderController.create();
-//                    break;
-//                case "3":
-//                    coderController.upDate();
-//                    break;
-//                case "4":
-//                    coderController.delete();
-//                    break;
-//                case "5":
-//                    coderController.getByName();
-//                    break;
+                case "2":
+                    AuthorController.getAll();
+                    break;
+                case "3":
+                    AuthorController.getById();
+                    break;
+                case "4":
+                    AuthorController.delete();
+                    break;
+                case "5":
+                    AuthorController.upDate();
+                    break;
+                case "6":
+                    String option2 = "";
+                    do {
+                        option2 = JOptionPane.showInputDialog("""
+                    1. Create a new book
+                    2. Show all books
+                    3. Search books by id
+                    4. Search books by title
+                    5. Search books by author
+                    6. Delete books.
+                    7. Modify books         
+                    8. Exit
+                    
+                    
+                    Choose an option:
+                    """);
+                        switch (option2){
+                            case "1":
+                        }
+                    }while(!option.equals("6"));
+
             }
-        }while(!option.equals("6"));
+        }while(!option.equals("7"));
 
     }
 }
