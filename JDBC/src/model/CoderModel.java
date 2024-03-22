@@ -134,7 +134,7 @@ public class CoderModel implements CRUD {
             //Si las fulas afectadas fueron mayor a cero quiere decir que si elimino algo
             if(totalAffectedRows > 0){
                 isDeleted = true;
-                JOptionPane.showMessageDialog(null,"the update was succesful");
+                JOptionPane.showMessageDialog(null,"the delete was succesful");
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());

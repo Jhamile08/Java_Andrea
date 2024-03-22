@@ -1,15 +1,49 @@
+
+import controller.AuthorController;
+import database.ConfigDB;
+import entity.Author;
+
+import javax.swing.*;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        ConfigDB.openConnection();
+
+        String option = "";
+        do {
+            option = JOptionPane.showInputDialog("""
+                    1. Create a new author
+                    2. Show all authors
+                    3. Search author by id
+                    4. Delete Author.
+                    5. Modify author
+                    6. Exit
+                    
+                    
+                    Choose an option:
+                    """);
+            switch (option){
+                case "1":
+                    AuthorController.create();
+                    break;
+//                case "2":
+//                    coderController.create();
+//                    break;
+//                case "3":
+//                    coderController.upDate();
+//                    break;
+//                case "4":
+//                    coderController.delete();
+//                    break;
+//                case "5":
+//                    coderController.getByName();
+//                    break;
+            }
+        }while(!option.equals("6"));
+
     }
 }
