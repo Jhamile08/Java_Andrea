@@ -1,6 +1,6 @@
 package entity;
 
-public class medico {
+public class Medico {
     private int id_medico;
     private String name;
     private String surname;
