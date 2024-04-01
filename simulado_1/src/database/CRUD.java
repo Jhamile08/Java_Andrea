@@ -5,5 +5,4 @@ public interface CRUD {
     public List<Object> findAll();
     public boolean upDate(Object obj);
     public boolean delete(Object obj);
-
 }

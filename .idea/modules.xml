@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/ejercicio_jdbc/ejercicio_jdbc.iml" filepath="$PROJECT_DIR$/ejercicio_jdbc/ejercicio_jdbc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java_andrea.iml" filepath="$PROJECT_DIR$/.idea/java_andrea.iml" />
       <module fileurl="file://$PROJECT_DIR$/poo_segunda_parte/poo_segunda_parte.iml" filepath="$PROJECT_DIR$/poo_segunda_parte/poo_segunda_parte.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simulado_1/simulado_1.iml" filepath="$PROJECT_DIR$/simulado_1/simulado_1.iml" />
     </modules>
   </component>
 </project>
