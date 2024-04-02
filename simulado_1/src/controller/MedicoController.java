@@ -23,5 +23,5 @@ public class MedicoController {
         String selectFilterPatient =
                 (String) JOptionPane.showInputDialog(null, "Seleccione el paciente\n", "Filter", JOptionPane.QUESTION_MESSAGE, null, optionSpecialty, optionSpecialty[0]);
     }
-    
+
 }
