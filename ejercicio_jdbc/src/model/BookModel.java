@@ -2,7 +2,6 @@ package model;
 
 import database.CRUD;
 import database.ConfigDB;
-import entity.Author;
 import entity.Book;
 
 import javax.swing.*;

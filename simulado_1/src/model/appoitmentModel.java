@@ -1,6 +1,7 @@
 package model;
 
 import database.CRUD;
+import entity.Patient;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class appoitmentModel implements CRUD {
     }
 
     @Override
-    public List<Object> findAll() {
+    public List<Patient> findAll() {
         return null;
     }
 

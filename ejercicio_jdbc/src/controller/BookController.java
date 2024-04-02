@@ -132,7 +132,7 @@ public class BookController{
 
             objBook.setTitle(title);
             objBook.setYear_publication(year_publication);
-            objBook.setPrice(price);
+            objBook. setPrice(price);
             objBook.setId_author(id_author);
             objBookModel.upDate(objBook);
         }

@@ -42,11 +42,12 @@ public class PatientModel implements CRUD {
     }
 
     @Override
-    public List<Object> findAll() {
-        //Create list
-        List<Object> listPatient = new ArrayList<>();
+    public List<Patient> findAll() {
         //Open connection
         Connection objConnection = ConfigDB.openConnection();
+        //Create list
+        List<Patient> listPatient = new ArrayList<>();
+
 
         try{
             String sql = "SELECT * FROM patient";
@@ -64,7 +65,9 @@ public class PatientModel implements CRUD {
                 objPatient.setBirth_date(objResult.getString("birth_date"));
                 objPatient.setIdentity(objResult.getString("identity"));
                 listPatient.add(objPatient);
+
             }
+            objPrepare.close();
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null,e.getMessage());
         }

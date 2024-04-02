@@ -41,4 +41,13 @@ public class Specialty {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Specialty{" +
+                "id_specialty=" + id_specialty +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
