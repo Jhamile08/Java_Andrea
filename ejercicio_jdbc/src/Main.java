@@ -74,6 +74,9 @@ public class Main {
                             case "4":
                                 BookController.getByName();
                                 break;
+                            case "5":
+                                BookController.getByNameAuthor();
+                                break;
                             case "6":
                                 BookController.delete();
                                 break;

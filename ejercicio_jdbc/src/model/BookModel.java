@@ -245,7 +245,7 @@ public class BookModel implements CRUD {
         return listBooks;
     }
 
-    public List<Book> foundByAuthor(String author){
+    public List<Book> foundByAuthor(String nameAuthor){
         //se crea la lista
         List<Book> listBooks = new ArrayList<>();
         //abrimos la conexion
@@ -254,11 +254,11 @@ public class BookModel implements CRUD {
 
         try {
             // Sentencia sql
-            String sql = "SELECT * FROM book WHERE title like ?;";
+            String sql = "SELECT * FROM book LEFT JOIN author ON book.id_author = author.id WHERE author.name = ? OR book.id_author = author.id;";
             // Statement
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
             // valor al parametro
-            objPrepare.setString(1, "%"+author+"%");
+            objPrepare.setString(1, "%"+nameAuthor+"%");
             //Ejecutamos el Query
             ResultSet objResult = objPrepare.executeQuery();
 

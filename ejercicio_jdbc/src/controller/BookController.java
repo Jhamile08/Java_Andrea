@@ -99,6 +99,18 @@ public class BookController{
         JOptionPane.showMessageDialog(null, listaString);
 
     }
+    public static void getByNameAuthor(){
+        String nameAuthor = JOptionPane.showInputDialog("\n Enter the author name to find: ");
+        BookModel objBookModel = new BookModel();
+
+        String listaString = "The author book with name "+nameAuthor+" is:\n";
+        for(Book iterador: objBookModel.foundByAuthor(nameAuthor)){
+            listaString += iterador.toString() + "\n";
+
+        }
+        JOptionPane.showMessageDialog(null, listaString);
+
+    }
 
     public static void upDate(){
         //Use the model
