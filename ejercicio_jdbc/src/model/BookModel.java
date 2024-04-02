@@ -22,7 +22,7 @@ public class BookModel implements CRUD {
         Book objBook = (Book) obj;
         try {
             //SQL
-            String sql = "INSERT INTO book (title,year_publication,price,id_author) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO book (title,year_publication,price,id_author) VALUES (?,?,?,?);";
             //Prepare statement
             PreparedStatement objPrepare = objConnection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             //Asign value to the ??

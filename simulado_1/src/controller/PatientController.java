@@ -34,8 +34,8 @@ public class PatientController {
         String listPatient = "Patient list\n";
         for(Object iterador : objPatientModel.findAll()){
             //Convert the object to author
-            Patient objBook = (Patient) iterador;
-            listPatient += objBook.toString() + "\n";
+            Patient objPatient = (Patient) iterador;
+            listPatient += objPatient.toString() + "\n";
         }
 
         JOptionPane.showMessageDialog(null,listPatient);
@@ -65,6 +65,31 @@ public class PatientController {
         }else{
             confirm =  JOptionPane.showConfirmDialog(null,"Are you sure that you want to delete patient?\n " + objPatient.toString());
             if(confirm == 0) objPatientModel.delete(objPatient);
+        }
+    }
+
+    public static void upDate(){
+        PatientModel objPatientModel = new PatientModel();
+
+        String listPatient = getAllString();
+        int idUpDate = Integer.parseInt(JOptionPane.showInputDialog(listPatient+"\n Enter the patient ID to edit: "));
+        //Get the patient id
+        Patient objPatient = objPatientModel.findById(idUpDate);
+
+        //Validate to exists patient
+        if(objPatient==null){
+            JOptionPane.showMessageDialog(null, "Patient not found");
+        } else {
+            String name = JOptionPane.showInputDialog(null, "Enter new name: ", objPatient.getName());
+            String surname = JOptionPane.showInputDialog(null, "Enter the new surname: ", objPatient.getSurname());
+            String birth_date = JOptionPane.showInputDialog(null, "Enter the new birth: ", objPatient.getBirth_date());
+            String identity = JOptionPane.showInputDialog(null, "Enter de new identity", objPatient.getIdentity());
+
+            objPatient.setName(name);
+            objPatient.setSurname(surname);
+            objPatient.setBirth_date(birth_date);
+            objPatient.setIdentity(identity);
+            objPatientModel.upDate(objPatient);
         }
     }
 }

@@ -83,15 +83,16 @@ public class PatientModel implements CRUD {
         boolean isUpdate = false;
         try {
             //SQL
-            String sql = "UPDATE book SET title = ?, year_publication = ?, price = ?, id_author = ? WHERE id = ?;";
+            String sql = "UPDATE patient SET name = ?, surname = ?, birth_date = ?, identity = ? WHERE id_patient = ?;";
             //Create prepared statement
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
             //Asign value to the query
-            objPrepare.setInt(1,objPatient.getId_patient());
-            objPrepare.setString(2,objPatient.getName());
-            objPrepare.setString(3,objPatient.getSurname());
-            objPrepare.setString(4,objPatient.getBirth_date());
-            objPrepare.setString(5,objPatient.getIdentity());
+
+            objPrepare.setString(1,objPatient.getName());
+            objPrepare.setString(2,objPatient.getSurname());
+            objPrepare.setString(3,objPatient.getBirth_date());
+            objPrepare.setString(4,objPatient.getIdentity());
+            objPrepare.setInt(5,objPatient.getId_patient());
             //Execute query
             int totalRowAffected = objPrepare.executeUpdate();
             if(totalRowAffected > 0){
@@ -118,7 +119,7 @@ public class PatientModel implements CRUD {
 
         try {
             //Sql
-            String sql  = "DELETE FROM patient WHERE id = ?;";
+            String sql  = "DELETE FROM patient WHERE id_patient = ?;";
             //Create the prepared statement
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
             //Asign value
@@ -145,7 +146,7 @@ public class PatientModel implements CRUD {
 
         try {
             //Sql
-            String sql = "SELECT * FROM patient WHERE id = ?;";
+            String sql = "SELECT * FROM patient WHERE id_patient = ?;";
             //Create prepare statement
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
             //Asign value
