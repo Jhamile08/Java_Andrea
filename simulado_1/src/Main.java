@@ -1,3 +1,4 @@
+import controller.MedicoController;
 import controller.PatientController;
 import controller.SpecialtyController;
 import database.ConfigDB;
@@ -12,10 +13,12 @@ public class Main {
         do{
             option = JOptionPane.showInputDialog(
                     """
-                       1.patient
-                       2.specialty     
-                       3.medico  
-                       4.appoitment
+                       Welcome to the hospital
+                       
+                       1.Consult patients
+                       2.Consult specialties     
+                       3.Consult medicos  
+                       4.Consult appoitments
                        5.close
                             """);
             switch (option){
@@ -78,20 +81,20 @@ public class Main {
                 case"3":
                     String option4 = "";
                     do{
-                        option3 = JOptionPane.showInputDialog(
+                        option4 = JOptionPane.showInputDialog(
                                 """
-                                   1.create specialty
-                                   2.show specialty       
+                                   1.create medico
+                                   2.show medico       
                                    3.delete specialty  
                                    4.update specialty  
                                    5.back
                                         """);
                         switch (option4){
                             case"1":
-                                SpecialtyController.create();
+                                MedicoController.create();
                                 break;
                             case"2":
-                                SpecialtyController.getAll();
+                                MedicoController.getAll();
                                 break;
                             case"3":
                                 SpecialtyController.delete();

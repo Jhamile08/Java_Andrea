@@ -4,6 +4,7 @@ import entity.Specialty;
 import model.SpecialtyModel;
 
 import javax.swing.*;
+import java.util.List;
 
 public class SpecialtyController {
     public static void create(){
@@ -40,6 +41,16 @@ public class SpecialtyController {
         for(Object iterador: objModel.findAll()){
             Specialty objSpecialty = (Specialty) iterador;
             listSpecialty += objSpecialty.toString() + "\n";
+        }
+        return listSpecialty;
+    }
+    public static String getAllStringName(){
+        SpecialtyModel objModel = new SpecialtyModel();
+        String listSpecialty = "Specialty list\n";
+
+        for(Object iterador: objModel.findAll()){
+            Specialty objSpecialty = (Specialty) iterador;
+            listSpecialty += objSpecialty.toStringName() + "\n";
         }
         return listSpecialty;
     }

@@ -12,7 +12,7 @@ public class appoitmentModel implements CRUD {
     }
 
     @Override
-    public List<Patient> findAll() {
+    public List<Object> findAll() {
         return null;
     }
 

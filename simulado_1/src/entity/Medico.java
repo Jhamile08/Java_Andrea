@@ -4,7 +4,7 @@ public class Medico {
     private int id_medico;
     private String name;
     private String surname;
-    private int id_specialty;
+    private int id_specialty_foreing;
 
     //CONSTRUCTOR
 
@@ -12,7 +12,7 @@ public class Medico {
         this.id_medico = id_medico;
         this.name = name;
         this.surname = surname;
-        this.id_specialty = id_specialty;
+        this.id_specialty_foreing = id_specialty;
     }
 
     public Medico() {
@@ -44,11 +44,21 @@ public class Medico {
         this.surname = surname;
     }
 
-    public int getId_specialty() {
-        return id_specialty;
+    public int getId_specialty_foreing() {
+        return id_specialty_foreing;
     }
 
-    public void setId_specialty(int id_specialty) {
-        this.id_specialty = id_specialty;
+    public void setId_specialty_foreing(int id_specialty) {
+        this.id_specialty_foreing = id_specialty;
+    }
+
+    @Override
+    public String toString() {
+        return "Medico{" +
+                "id_medico=" + id_medico +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", id_specialty_foreing=" + id_specialty_foreing +
+                '}';
     }
 }

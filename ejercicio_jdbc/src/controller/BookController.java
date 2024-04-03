@@ -40,9 +40,9 @@ public class BookController{
 
         BookModel objBookModel = new BookModel();
         String listBook = "Book list\n";
-        for(Object iterador : objBookModel.findAll()){
+        for(Object iterator : objBookModel.findAll()){
             //Convert the object to author
-            Book objBook = (Book) iterador;
+            Book objBook = (Book) iterator;
             listBook += objBook.toString() + "\n";
         }
 
@@ -52,9 +52,9 @@ public class BookController{
     public static String getAllString(){
         BookModel objModel = new BookModel();
         String listBooks = "Books list\n";
-        for(Object iterador : objModel.findAll()){
+        for(Object iterator : objModel.findAll()){
             //Convert the object to author
-            Book objBook = (Book) iterador;
+            Book objBook = (Book) iterator;
             listBooks += objBook.toString() + "\n";
         }
         return listBooks;

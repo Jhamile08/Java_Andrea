@@ -50,4 +50,10 @@ public class Specialty {
                 ", description='" + description + '\'' +
                 '}';
     }
+
+    public String toStringName() {
+        return "Specialty{" +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

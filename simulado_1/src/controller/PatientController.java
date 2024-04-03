@@ -58,7 +58,7 @@ public class PatientController {
         String listPatient = getAllString();
 
         int idDelete = Integer.parseInt(JOptionPane.showInputDialog(listPatient + "\n Enter the id patient to delete: "));
-        Patient objPatient = objPatientModel.findById(idDelete);
+        Patient objPatient = (Patient) objPatientModel.findById(idDelete);
         int confirm = 1;
         if(objPatient == null){
             JOptionPane.showMessageDialog(null, "Patient not found");
@@ -74,7 +74,7 @@ public class PatientController {
         String listPatient = getAllString();
         int idUpDate = Integer.parseInt(JOptionPane.showInputDialog(listPatient+"\n Enter the patient ID to edit: "));
         //Get the patient id
-        Patient objPatient = objPatientModel.findById(idUpDate);
+        Patient objPatient = (Patient) objPatientModel.findById(idUpDate);
 
         //Validate to exists patient
         if(objPatient==null){

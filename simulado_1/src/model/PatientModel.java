@@ -42,11 +42,11 @@ public class PatientModel implements CRUD {
     }
 
     @Override
-    public List<Patient> findAll() {
+    public List<Object> findAll() {
         //Open connection
         Connection objConnection = ConfigDB.openConnection();
         //Create list
-        List<Patient> listPatient = new ArrayList<>();
+        List<Object> listPatient = new ArrayList<>();
 
 
         try{
@@ -141,7 +141,7 @@ public class PatientModel implements CRUD {
         return idDelete;
     }
 
-    public Patient findById(int id) {
+    public Object findById(int id) {
         //Open the connection
         Connection objConnection = ConfigDB.openConnection();
         //create book

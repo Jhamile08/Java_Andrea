@@ -41,7 +41,7 @@ public class SpecialtyModel implements CRUD {
     }
 
     @Override
-    public List<Patient> findAll() {
+    public List<Object> findAll() {
         //Create list
         List<Object> listSpecialty = new ArrayList<>();
         Connection objConnection = ConfigDB.openConnection();
