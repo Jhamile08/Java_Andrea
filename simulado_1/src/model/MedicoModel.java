@@ -6,6 +6,7 @@ import entity.Medico;
 import entity.Patient;
 
 import javax.swing.*;
+import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -73,11 +74,89 @@ public class MedicoModel implements CRUD {
 
     @Override
     public boolean upDate(Object obj) {
-        return false;
+        //Open connection
+        Connection objConnection = ConfigDB.openConnection();
+        //Convert to author
+        Medico objMedico = (Medico) obj;
+        //Create a varible for know the state
+        boolean isUpdate = false;
+        try {
+            //SQL
+            String sql = "UPDATE medico SET name = ?, surname = ?, id_specialty_foreing = ? WHERE id_medico = ?;";
+            //Create prepared statement
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            //Asign value to the query
+            objPrepare.setString(1, objMedico.getName());
+            objPrepare.setString(2, objMedico.getSurname());
+            objPrepare.setInt(3, objMedico.getId_specialty_foreing());
+            objPrepare.setInt(4, objMedico.getId_medico());
+            //Execute query
+            int totalRowAffected = objPrepare.executeUpdate();
+            if(totalRowAffected > 0){
+                isUpdate = true;
+                JOptionPane.showMessageDialog(null,"the update was succesful");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }finally {
+            ConfigDB.closeConnection();
+        }
+        return isUpdate;
     }
+
+
 
     @Override
     public boolean delete(Object obj) {
-        return false;
+        Medico objMedico = (Medico) obj;
+        Connection objConnection = ConfigDB.openConnection();
+        boolean idDelete = false;
+        try{
+            String sql = "DELETE FROM medico WHERE id_medico = ?;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            objPrepare.setInt(1, objMedico.getId_medico());
+            int totalRowAffected = objPrepare.executeUpdate();
+            if(totalRowAffected > 0){
+                idDelete = true;
+                JOptionPane.showMessageDialog(null, "The delete was succesful");
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        ConfigDB.closeConnection();
+        return idDelete;
+    }
+
+
+    public Medico findById(int id) {
+        //Open the connection
+        Connection objConnection = ConfigDB.openConnection();
+        //create book
+        Medico objMedico = null;
+
+        try {
+            //Sql
+            String sql = "SELECT * FROM medico WHERE id_medico = ?;";
+            //Create prepare statement
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            //Asign value
+            objPrepare.setInt(1, id);
+            //Execute query
+            ResultSet objResult = objPrepare.executeQuery();
+            if(objResult.next()){
+                objMedico = new Medico();
+                objMedico.setName(objResult.getString("name"));
+                objMedico.setSurname(objResult.getString("surname"));
+                objMedico.setId_specialty_foreing(objResult.getInt("id_specialty_foreing"));
+                objMedico.setId_medico(objResult.getInt("id_medico"));
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        //Close connection
+        ConfigDB.closeConnection();
+
+        return objMedico;
     }
 }

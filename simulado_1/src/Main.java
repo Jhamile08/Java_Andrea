@@ -26,12 +26,15 @@ public class Main {
                     String option2 = "";
                     do{
                         option2 = JOptionPane.showInputDialog(
-                                """
-                                   1.create patient
-                                   2.show patient       
-                                   3.delete patient  
-                                   4.update patient  
-                                   5.back
+                            """ 
+                                  PATIENT
+                                   
+                                   1. Create patient
+                                   2. Show patient       
+                                   3. Delete patient  
+                                   4. Update patient  
+                                   5. Back
+                                   
                                         """);
                         switch (option2){
                             case"1":
@@ -55,11 +58,14 @@ public class Main {
                     do{
                         option3 = JOptionPane.showInputDialog(
                                 """
-                                   1.create specialty
-                                   2.show specialty       
-                                   3.delete specialty  
-                                   4.update specialty  
-                                   5.back
+                                   SPECIALTY
+                                   
+                                   1. Create specialty
+                                   2. Show specialty       
+                                   3. Delete specialty  
+                                   4. Update specialty  
+                                   5. Back
+                                   
                                         """);
                         switch (option3){
                             case"1":
@@ -83,11 +89,14 @@ public class Main {
                     do{
                         option4 = JOptionPane.showInputDialog(
                                 """
-                                   1.create medico
-                                   2.show medico       
-                                   3.delete specialty  
-                                   4.update specialty  
-                                   5.back
+                                   MEDICO
+                                   
+                                   1. Create medico
+                                   2. Show medico       
+                                   3. Delete medico  
+                                   4. Update specialty  
+                                   5. Back
+                                   
                                         """);
                         switch (option4){
                             case"1":
@@ -97,10 +106,10 @@ public class Main {
                                 MedicoController.getAll();
                                 break;
                             case"3":
-                                SpecialtyController.delete();
+                                MedicoController.delete();
                                 break;
                             case"4":
-                                SpecialtyController.upDate();
+                                MedicoController.upDate();
                                 break;
                         }
 

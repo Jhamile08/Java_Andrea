@@ -8,8 +8,7 @@ public class Medico {
 
     //CONSTRUCTOR
 
-    public Medico(int id_medico, String name, String surname, int id_specialty) {
-        this.id_medico = id_medico;
+    public Medico( String name, String surname, int id_specialty) {
         this.name = name;
         this.surname = surname;
         this.id_specialty_foreing = id_specialty;
@@ -52,6 +51,7 @@ public class Medico {
         this.id_specialty_foreing = id_specialty;
     }
 
+
     @Override
     public String toString() {
         return "Medico{" +
@@ -61,4 +61,6 @@ public class Medico {
                 ", id_specialty_foreing=" + id_specialty_foreing +
                 '}';
     }
+
+
 }
