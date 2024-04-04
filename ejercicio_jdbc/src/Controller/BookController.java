@@ -1,18 +1,9 @@
-package controller;
+package Controller;
 
-import database.ConfigDB;
-import entity.Author;
 import entity.Book;
-import model.AuthorModel;
 import model.BookModel;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BookController{
     public static void create(){

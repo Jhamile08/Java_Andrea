@@ -1,8 +1,7 @@
-import Controller.MedicoController;
-import Controller.PatientController;
-import Controller.SpecialtyController;
-import database.ConfigDB;
 
+
+import DataBase.ConfigDB;
+import Controller.PlaneController;
 import javax.swing.*;
 
 public class Main {
@@ -15,10 +14,10 @@ public class Main {
                     """
                        Welcome to the hospital
                        
-                       1.Consult patients
-                       2.Consult specialties     
-                       3.Consult medicos  
-                       4.Consult appoitments
+                       1.Consult planes
+                       2.Consult flights     
+                       3.Consult passengers  
+                       4.Consult reservations
                        5.close
                             """);
             switch (option){
@@ -26,28 +25,28 @@ public class Main {
                     String option2 = "";
                     do{
                         option2 = JOptionPane.showInputDialog(
-                            """ 
-                                  PATIENT
-                                   
-                                   1. Create patient
-                                   2. Show patient       
-                                   3. Delete patient  
-                                   4. Update patient  
-                                   5. Back
-                                   
-                                        """);
+                                """ 
+                                      PLANE
+                                       
+                                       1. Create plane
+                                       2. Show plane       
+                                       3. Delete plane  
+                                       4. Update plane  
+                                       5. Back
+                                       
+                                            """);
                         switch (option2){
                             case"1":
-                                PatientController.create();
+                                PlaneController.create();
                                 break;
                             case"2":
-                                PatientController.getAll();
+                                PlaneController.create();
                                 break;
                             case"3":
-                                PatientController.delete();
+                                PlaneController.create();
                                 break;
                             case"4":
-                                PatientController.upDate();
+                                PlaneController.create();
                                 break;
                         }
 
@@ -69,16 +68,16 @@ public class Main {
                                         """);
                         switch (option3){
                             case"1":
-                                SpecialtyController.create();
+                                PlaneController.create();
                                 break;
                             case"2":
-                                SpecialtyController.getAll();
+                                PlaneController.create();
                                 break;
                             case"3":
-                                SpecialtyController.delete();
+                                PlaneController.create();
                                 break;
                             case"4":
-                                SpecialtyController.upDate();
+                                PlaneController.create();
                                 break;
                         }
 
@@ -100,23 +99,23 @@ public class Main {
                                         """);
                         switch (option4){
                             case"1":
-                                MedicoController.create();
+                                PlaneController.create();
                                 break;
                             case"2":
-                                MedicoController.getAll();
+                                PlaneController.create();
                                 break;
                             case"3":
-                                MedicoController.delete();
+                                PlaneController.create();
                                 break;
                             case"4":
-                                MedicoController.upDate();
+                                PlaneController.create();
                                 break;
                         }
 
                     }while (!option4.equals("5"));
                     break;
                 case"4":
-                    PatientController.upDate();
+                    PlaneController.create();
                     break;
             }
 

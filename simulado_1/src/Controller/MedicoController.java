@@ -1,4 +1,4 @@
-package controller;
+package Controller;
 
 import entity.Medico;
 import Utils.Utils;
@@ -11,30 +11,19 @@ import javax.swing.*;
 
 public class MedicoController {
     public static void create() {
-        MedicoModel objMedicoModel = new MedicoModel();
         SpecialtyModel objSpecialtyModel = new SpecialtyModel();
         //Requist the data to the user
         String name = JOptionPane.showInputDialog("Insert de medico's name: ");
         String surname = JOptionPane.showInputDialog("Insert de medico's surname: ");
         Object[] options = Utils.listToArray(objSpecialtyModel.findAll());
-
-
         Specialty idSpecialty = (Specialty) JOptionPane.showInputDialog(null,
                 "This are the specialities availible",
-                "",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options[0]);
-
+                "", JOptionPane.QUESTION_MESSAGE,
+                null, options, options[0]);
 
         //Create the instance
-        Medico objMedico = new Medico();
-        objMedico.setName(name);
-        objMedico.setSurname(surname);
-        objMedico.setId_specialty_foreing(idSpecialty.getId_specialty());
-        objMedico = (Medico) objMedicoModel.insert(objMedico);
-        JOptionPane.showMessageDialog(null,objMedico.toString());
+        instanceModel().insert(new Medico(name,surname,idSpecialty.getId_specialty()));
+        JOptionPane.showMessageDialog(null,instanceModel().toString());
     }
 
     public static void getAll() {

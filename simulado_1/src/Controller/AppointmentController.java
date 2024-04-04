@@ -1,13 +1,11 @@
-package controller;
+package Controller;
 
 import Utils.Utils;
 import entity.Medico;
 import entity.Patient;
-import entity.Specialty;
 import model.AppointmentModel;
 import model.MedicoModel;
 import model.PatientModel;
-import model.SpecialtyModel;
 
 import javax.swing.*;
 

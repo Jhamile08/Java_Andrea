@@ -1,14 +1,13 @@
 
-import controller.AuthorController;
-import controller.BookController;
+import Controller.AuthorController;
+import Controller.BookController;
 import database.ConfigDB;
-import entity.Author;
 
 import javax.swing.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
 

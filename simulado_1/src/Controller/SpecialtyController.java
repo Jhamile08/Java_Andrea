@@ -1,10 +1,9 @@
-package controller;
+package Controller;
 
 import entity.Specialty;
 import model.SpecialtyModel;
 
 import javax.swing.*;
-import java.util.List;
 
 public class SpecialtyController {
     public static void create(){

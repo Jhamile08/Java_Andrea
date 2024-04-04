@@ -1,16 +1,13 @@
-package controller;
+package Controller;
 
 import entity.Patient;
 import model.PatientModel;
 
 import javax.swing.*;
-import java.util.Date;
+
 
 public class PatientController {
     public static void create(){
-        //Use model
-        PatientModel objPatientModel = new PatientModel();
-
         //Requiest the data to the user
         String name = JOptionPane.showInputDialog("Insert patient's name: ");
         String surname = JOptionPane.showInputDialog("Insert patient's surnames: ");
@@ -25,14 +22,13 @@ public class PatientController {
         objPatient.setIdentity(identity);
 
         //Call the method insert from patient  model and save the object
-        objPatient = (Patient) objPatientModel.insert(objPatient);
+        objPatient = (Patient) instanceModel().insert(objPatient);
         JOptionPane.showMessageDialog(null,objPatient.toString());
     }
     public static void getAll(){
 
-        PatientModel objPatientModel = new PatientModel();
         String listPatient = "Patient list\n";
-        for(Object iterador : objPatientModel.findAll()){
+        for(Object iterador : instanceModel().findAll()){
             //Convert the object to author
             Patient objPatient = (Patient) iterador;
             listPatient += objPatient.toString() + "\n";
@@ -42,9 +38,8 @@ public class PatientController {
     }
 
     public static String getAllString(){
-        PatientModel objModel = new PatientModel();
         String listPatient = "Patient list\n";
-        for(Object iterador : objModel.findAll()){
+        for(Object iterador : instanceModel().findAll()){
             //Convert the object to author
             Patient objBook = (Patient) iterador;
             listPatient += objBook.toString() + "\n";
@@ -54,27 +49,25 @@ public class PatientController {
 
 
     public static void delete(){
-        PatientModel objPatientModel = new PatientModel();
         String listPatient = getAllString();
 
         int idDelete = Integer.parseInt(JOptionPane.showInputDialog(listPatient + "\n Enter the id patient to delete: "));
-        Patient objPatient = (Patient) objPatientModel.findById(idDelete);
+        Patient objPatient = (Patient) instanceModel().findById(idDelete);
         int confirm = 1;
         if(objPatient == null){
             JOptionPane.showMessageDialog(null, "Patient not found");
         }else{
             confirm =  JOptionPane.showConfirmDialog(null,"Are you sure that you want to delete patient?\n " + objPatient.toString());
-            if(confirm == 0) objPatientModel.delete(objPatient);
+            if(confirm == 0) instanceModel().delete(objPatient);
         }
     }
 
     public static void upDate(){
-        PatientModel objPatientModel = new PatientModel();
 
         String listPatient = getAllString();
         int idUpDate = Integer.parseInt(JOptionPane.showInputDialog(listPatient+"\n Enter the patient ID to edit: "));
         //Get the patient id
-        Patient objPatient = (Patient) objPatientModel.findById(idUpDate);
+        Patient objPatient = (Patient) instanceModel().findById(idUpDate);
 
         //Validate to exists patient
         if(objPatient==null){
@@ -89,7 +82,12 @@ public class PatientController {
             objPatient.setSurname(surname);
             objPatient.setBirth_date(birth_date);
             objPatient.setIdentity(identity);
-            objPatientModel.upDate(objPatient);
+            instanceModel().upDate(objPatient);
         }
+
     }
+    public static PatientModel instanceModel() {
+        return new PatientModel();
+    }
+
 }

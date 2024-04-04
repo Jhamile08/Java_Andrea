@@ -1,9 +1,8 @@
-package controller;
+package Controller;
 
 import entity.Coder;
 import model.CoderModel;
 import javax.swing.*;
-import java.util.List;
 
 public class coderController {
     public static void getAll(){
