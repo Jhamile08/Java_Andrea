@@ -40,13 +40,13 @@ public class Main {
                                 PlaneController.create();
                                 break;
                             case"2":
-                                PlaneController.create();
+                                PlaneController.getAll();
                                 break;
                             case"3":
-                                PlaneController.create();
+                                PlaneController.delete();
                                 break;
                             case"4":
-                                PlaneController.create();
+                                PlaneController.upDate();
                                 break;
                         }
 

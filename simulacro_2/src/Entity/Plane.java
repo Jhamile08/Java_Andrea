@@ -48,10 +48,8 @@ public class Plane {
 
     @Override
     public String toString() {
-        return "Plane{" +
-                "id_plane=" + id_plane +
-                ", model='" + model + '\'' +
-                ", capacity=" + capacity +
-                '}';
+        return "Plane id : " + id_plane +
+                ", model : " + model +
+                ", capacity : " + capacity ;
     }
 }
