@@ -37,7 +37,7 @@ public class MedicoModel implements CRUD {
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
+        ConfigDB.closeConnection();
         return objMedico;
     }
 

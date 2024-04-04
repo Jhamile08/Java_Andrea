@@ -1,16 +1,13 @@
 package controller;
 
 import entity.Medico;
-import entity.MedicoAdapter;
-import entity.Patient;
+import Utils.Utils;
 import entity.Specialty;
 import model.MedicoModel;
-import model.PatientModel;
 import model.SpecialtyModel;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.List;
+
 
 public class MedicoController {
     public static void create() {
@@ -19,23 +16,16 @@ public class MedicoController {
         //Requist the data to the user
         String name = JOptionPane.showInputDialog("Insert de medico's name: ");
         String surname = JOptionPane.showInputDialog("Insert de medico's surname: ");
-        List<Object> listSpecialty = objSpecialtyModel.findAll();
-        Specialty[] arrSpecialty = new Specialty[listSpecialty.size()];
+        Object[] options = Utils.listToArray(objSpecialtyModel.findAll());
 
-        int i = 0;
-        for (Object iterator : listSpecialty){
-            Specialty objSpecialty = (Specialty) iterator;
-            arrSpecialty[i] = objSpecialty;
-            i++;
-        }
 
         Specialty idSpecialty = (Specialty) JOptionPane.showInputDialog(null,
                 "This are the specialities availible",
                 "",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                arrSpecialty,
-                arrSpecialty[0]);
+                options,
+                options[0]);
 
 
         //Create the instance
@@ -53,7 +43,7 @@ public class MedicoController {
         for (Object iterator : objMedicoModel.findAll()) {
             //Convert the object to author
             Medico objMedico = (Medico) iterator;
-            listMedico += objMedico.toString() + "\n";
+            listMedico += objMedico.info() + "\n";
         }
         JOptionPane.showMessageDialog(null, listMedico);
     }
@@ -69,17 +59,29 @@ public class MedicoController {
     }
 
     public static void delete() {
-
-
-
+        Object[] options = Utils.listToArray(instanceModel().findAll());
+        Medico objectSelected = (Medico) JOptionPane.showInputDialog(null,"Select one speciality",
+               "",
+               JOptionPane.QUESTION_MESSAGE,null,
+               options, options[0]
+       );
+        int confirm = 1;
+        if(objectSelected == null){
+            JOptionPane.showMessageDialog(null, "Medic not found");
+        }else{
+            confirm =  JOptionPane.showConfirmDialog(null,"Are you sure that you want to delete medic?\n " + objectSelected.toString());
+            if(confirm == 0) instanceModel().delete(objectSelected);
+        }
     }
 
     public static void upDate() {
-
-        List<Object> listSpecialty = instanceModel().findAll();
-        listToArrayMedic(listSpecialty);
+        Object[] options = Utils.listToArray(instanceModel().findAll());
         //Get the author = id
-        Medico objMedico = instanceModel().findById(input.getObjMedico().getId_medico());
+        Medico objMedico = (Medico) JOptionPane.showInputDialog(null,"Select the medic to edit",
+                "",
+                JOptionPane.QUESTION_MESSAGE,null,
+                options, options[0]
+        );
 
         //Validate to exists author
         if (objMedico == null) {
@@ -91,18 +93,6 @@ public class MedicoController {
         objMedico.setSurname(JOptionPane.showInputDialog(null, "Enter new surname: ", objMedico.getSurname()));
         objMedico.setId_specialty_foreing(Integer.parseInt(JOptionPane.showInputDialog(null, "Enter id specialty: ", objMedico.getId_specialty_foreing())));
         instanceModel().upDate(objMedico);
-
-    }
-
-    public static Medico[] listToArrayMedic(List<Object> listMedicos){
-        Medico[] arrMedico = new Medico[listMedicos.size()];
-        int i = 0;
-        for (Object iterator : listMedicos) {
-            Medico objMedico = (Medico) iterator;
-            arrMedico[i] = objMedico;
-            i++;
-        }
-        return arrMedico;
 
     }
 

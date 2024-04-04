@@ -120,6 +120,6 @@ public class Main {
                     break;
             }
 
-        }while (!option.equals("6"));
+        }while (!option.equals("5"));
     }
 }

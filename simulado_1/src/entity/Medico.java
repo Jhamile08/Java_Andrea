@@ -51,15 +51,18 @@ public class Medico {
         this.id_specialty_foreing = id_specialty;
     }
 
-
-    @Override
-    public String toString() {
+    public String info(){
         return "Medico{" +
                 "id_medico=" + id_medico +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", id_specialty_foreing=" + id_specialty_foreing +
                 '}';
+    };
+
+    @Override
+    public String toString() {
+        return ", name: '" + name + " " +surname + ", id speciality: "+id_specialty_foreing;
     }
 
 

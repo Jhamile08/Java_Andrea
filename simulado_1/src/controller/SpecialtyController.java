@@ -21,7 +21,7 @@ public class SpecialtyController {
 
         //Call the method insert and save the object
         objSpecialty = (Specialty) objSpeacialtyModel.insert(objSpecialty);
-        JOptionPane.showMessageDialog(null, objSpecialty.toString());
+        JOptionPane.showMessageDialog(null, objSpecialty.info());
     }
 
     public static void getAll(){
@@ -29,7 +29,7 @@ public class SpecialtyController {
         String listSpecialty = "Specialty list\n";
         for(Object iterador: objModel.findAll()){
             Specialty objSpecialty = (Specialty) iterador;
-            listSpecialty += objSpecialty.toString() + "\n";
+            listSpecialty += objSpecialty.info() + "\n";
         }
         JOptionPane.showMessageDialog(null, listSpecialty);
     }
@@ -40,20 +40,11 @@ public class SpecialtyController {
 
         for(Object iterador: objModel.findAll()){
             Specialty objSpecialty = (Specialty) iterador;
-            listSpecialty += objSpecialty.toString() + "\n";
+            listSpecialty += objSpecialty.info() + "\n";
         }
         return listSpecialty;
     }
-    public static String getAllStringName(){
-        SpecialtyModel objModel = new SpecialtyModel();
-        String listSpecialty = "Specialty list\n";
 
-        for(Object iterador: objModel.findAll()){
-            Specialty objSpecialty = (Specialty) iterador;
-            listSpecialty += objSpecialty.toStringName() + "\n";
-        }
-        return listSpecialty;
-    }
 
     public static void upDate(){
         SpecialtyModel objSpecialtyModel = new SpecialtyModel();
@@ -85,7 +76,7 @@ public class SpecialtyController {
         if(objSpecialty == null){
             JOptionPane.showMessageDialog(null, "Specialty not found");
         }else{
-            confirm =  JOptionPane.showConfirmDialog(null,"Are you sure that you want to delete specialty?\n " + objSpecialty.toString());
+            confirm =  JOptionPane.showConfirmDialog(null,"Are you sure that you want to delete specialty?\n " + objSpecialty.info());
             if(confirm == 0) objSpecialtyModel.delete(objSpecialty);
         }
     }
