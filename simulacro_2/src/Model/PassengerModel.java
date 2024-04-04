@@ -71,6 +71,7 @@ public class PassengerModel implements CRUD {
             objPrepare.setString(1, objPassenger.getName());
             objPrepare.setString(2,objPassenger.getSurname());
             objPrepare.setString(3, objPassenger.getIdentity());
+            objPrepare.setInt(4, objPassenger.getId_passenger());
             int totalRowAffected = objPrepare.executeUpdate();
             if(totalRowAffected > 0){
                 isUpDate = true;

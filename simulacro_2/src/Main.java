@@ -1,5 +1,6 @@
 
 
+import Controller.PassengerController;
 import DataBase.ConfigDB;
 import Controller.PlaneController;
 import javax.swing.*;
@@ -15,8 +16,8 @@ public class Main {
                        Welcome to the hospital
                        
                        1.Consult planes
-                       2.Consult flights     
-                       3.Consult passengers  
+                       2.Consult passengers    
+                       3.Consult flights  
                        4.Consult reservations
                        5.close
                             """);
@@ -57,27 +58,27 @@ public class Main {
                     do{
                         option3 = JOptionPane.showInputDialog(
                                 """
-                                   SPECIALTY
+                                   PASSENGERS
                                    
-                                   1. Create specialty
-                                   2. Show specialty       
-                                   3. Delete specialty  
-                                   4. Update specialty  
+                                   1. Create passenger
+                                   2. Show passenger       
+                                   3. Delete passenger  
+                                   4. Update passenger  
                                    5. Back
                                    
                                         """);
                         switch (option3){
                             case"1":
-                                PlaneController.create();
+                                PassengerController.create();
                                 break;
                             case"2":
-                                PlaneController.create();
+                                PassengerController.getAll();
                                 break;
                             case"3":
-                                PlaneController.create();
+                                PassengerController.delete();
                                 break;
                             case"4":
-                                PlaneController.create();
+                                PassengerController.upDate();
                                 break;
                         }
 
@@ -90,10 +91,10 @@ public class Main {
                                 """
                                    MEDICO
                                    
-                                   1. Create medico
-                                   2. Show medico       
-                                   3. Delete medico  
-                                   4. Update specialty  
+                                   1. Create flight
+                                   2. Show flight       
+                                   3. Delete flight  
+                                   4. Update flight  
                                    5. Back
                                    
                                         """);

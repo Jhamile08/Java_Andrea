@@ -49,13 +49,16 @@ public class Passenger {
         this.identity = identity;
     }
 
-    @Override
-    public String toString() {
+    public String info(){
         return "Passenger{" +
                 "id_passenger=" + id_passenger +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", identity='" + identity + '\'' +
                 '}';
+    }
+    @Override
+    public String toString() {
+        return name + ' ' + surname;
     }
 }
