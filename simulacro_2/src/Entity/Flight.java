@@ -59,9 +59,7 @@ public class Flight {
     public void setId_plane(int id_plane) {
         this.id_plane = id_plane;
     }
-
-    @Override
-    public String toString() {
+    public String info() {
         return "Flight{" +
                 "id_flight=" + id_flight +
                 ", destination='" + destination + '\'' +
@@ -69,5 +67,12 @@ public class Flight {
                 ", departure_time='" + departure_time + '\'' +
                 ", id_plane=" + id_plane +
                 '}';
+    }
+    @Override
+    public String toString() {
+        return "Destination : '" + destination + '\'' +
+                ", departure date : '" + departure_date + '\'' +
+                ", departure time : " + departure_time + '\''
+                ;
     }
 }

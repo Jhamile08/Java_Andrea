@@ -1,6 +1,8 @@
 
 
+import Controller.FlightController;
 import Controller.PassengerController;
+import Controller.ReservationController;
 import DataBase.ConfigDB;
 import Controller.PlaneController;
 import javax.swing.*;
@@ -89,7 +91,7 @@ public class Main {
                     do{
                         option4 = JOptionPane.showInputDialog(
                                 """
-                                   MEDICO
+                                   FLIGHT
                                    
                                    1. Create flight
                                    2. Show flight       
@@ -100,24 +102,53 @@ public class Main {
                                         """);
                         switch (option4){
                             case"1":
-                                PlaneController.create();
+                                FlightController.create();
                                 break;
                             case"2":
-                                PlaneController.create();
+                                FlightController.getAll();
                                 break;
                             case"3":
-                                PlaneController.create();
+                                FlightController.delete();
                                 break;
                             case"4":
-                                PlaneController.create();
+                                FlightController.upDate();
                                 break;
                         }
 
                     }while (!option4.equals("5"));
                     break;
                 case"4":
-                    PlaneController.create();
+                    String option5 = "";
+                    do{
+                        option5 = JOptionPane.showInputDialog(
+                                """
+                                   RESERVATIONS
+                                   
+                                   1. Create reservation
+                                   2. Show reservation       
+                                   3. Delete reservation  
+                                   4. Update reservation  
+                                   5. Back
+                                   
+                                        """);
+                        switch (option5){
+                            case"1":
+                                ReservationController.create();
+                                break;
+                            case"2":
+                                ReservationController.getAll();
+                                break;
+                            case"3":
+                                ReservationController.delete();
+                                break;
+                            case"4":
+                                ReservationController.upDate();
+                                break;
+                        }
+
+                    }while (!option5.equals("5"));
                     break;
+
             }
 
         }while (!option.equals("5"));

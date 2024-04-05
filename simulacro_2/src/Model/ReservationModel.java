@@ -2,8 +2,8 @@ package Model;
 
 import DataBase.CRUD;
 import DataBase.ConfigDB;
-import Entity.Flight;
 import Entity.Plane;
+import Entity.Reservation;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -13,66 +13,70 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlightModel implements CRUD {
+public class ReservationModel implements CRUD {
     @Override
     public Object insert(Object obj) {
         Connection objConnection = ConfigDB.openConnection();
-        Flight objFlight = (Flight) obj;
-        try {
-            String sql = "INSERT INTO flight(destination, departure_date, departure_time) VALUES(?,?,?);";
+        Reservation objReservation = (Reservation) obj;
+        try{
+            String sql = "INSERT INTO reservation (reservation_time,seat,id_passenger,id_flight) VALUES (?,?,?,?);";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            objPrepare.setString(1, objFlight.getDestination());
-            objPrepare.setString(2, objFlight.getDeparture_date());
-            objPrepare.setString(3, objFlight.getDeparture_time());
+            objPrepare.setString(1,objReservation.getReservation_time());
+            objPrepare.setString(2, objReservation.getSeat());
+            objPrepare.setInt(3,objReservation.getId_passenger());
+            objPrepare.setInt(4, objReservation.getId_flight());
+
             objPrepare.execute();
             ResultSet objRest = objPrepare.getGeneratedKeys();
-            while(objRest.next()){
-                objFlight.setId_flight(objRest.getInt(1));
-            }
 
-        }catch (SQLException e){
+            while(objRest.next()){
+                objReservation.setId_reservation(objRest.getInt(1));
+            }
+        } catch (SQLException e){
             JOptionPane.showMessageDialog(null,e.getMessage());
         }
         ConfigDB.closeConnection();
-        return objFlight;
+        return objReservation;
     }
 
     @Override
     public List<Object> findAll() {
-        List<Object> listFlight = new ArrayList<>();
-        Connection objConnection = ConfigDB.openConnection();
+        List<Object> listReservation = new ArrayList<>();
+        Connection objConnection  = ConfigDB.openConnection();
         try {
-            String sql = "SELECT * FROM flight;";
+            String sql = "SELECT * FROM reservation;";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
             ResultSet objResult = objPrepare.executeQuery();
-            while(objResult.next()) {
-                Flight objFlight = new Flight();
-                objFlight.setId_flight(objResult.getInt("id_flight"));
-                objFlight.setDestination(objResult.getString("destination"));
-                objFlight.setDeparture_date(objResult.getString("departure_date"));
-                objFlight.setDeparture_time(objResult.getString("departure_time"));
-                objFlight.setId_plane(objResult.getInt("id_plane"));
-                listFlight.add(objFlight);
+            while(objResult.next()){
+                Reservation objReservation = new Reservation();
+                objReservation.setId_reservation(objResult.getInt("id_reservation"));
+                objReservation.setReservation_time(objResult.getString("reservation_time"));
+                objReservation.setSeat(objResult.getString("seat"));
+                objReservation.setId_passenger(objResult.getInt("id_passenger"));
+                objReservation.setId_flight(objResult.getInt("id_flight"));
+
+                listReservation.add(objReservation);
             }
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         ConfigDB.closeConnection();
-        return listFlight;
+        return listReservation;
     }
 
     @Override
     public boolean upDate(Object obj) {
         Connection objConnection = ConfigDB.openConnection();
-        Flight objFlight = (Flight) obj;
+        Reservation objReservation = (Reservation) obj;
         boolean isUpDate = false;
         try {
-            String sql = "UPDATE flight SET destination = ?, departure_date = ?, departure_time = ?, id_plane = ? WHERE id_flight = ?;";
+            String sql = "UPDATE reservation SET reservation_time = ?, seat = ?, id_passenger = ?, id_flight = ? WHERE id_reservation = ?;";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
-            objPrepare.setString(1, objFlight.getDestination());
-            objPrepare.setString(2, objFlight.getDeparture_date());
-            objPrepare.setString(3, objFlight.getDeparture_time());
-            objPrepare.setInt(4, objFlight.getId_plane());
+            objPrepare.setString(1, objReservation.getReservation_time());
+            objPrepare.setString(2, objReservation.getSeat());
+            objPrepare.setInt(3, objReservation.getId_passenger());
+            objPrepare.setInt(4, objReservation.getId_flight());
+            objPrepare.setInt(5, objReservation.getId_reservation());
 
             int totalRowAffected = objPrepare.executeUpdate();
             if(totalRowAffected > 0){
@@ -89,14 +93,14 @@ public class FlightModel implements CRUD {
 
     @Override
     public boolean delete(Object obj) {
-        Flight objFlight = (Flight) obj;
+        Reservation objReservation = (Reservation) obj;
         Connection objConnection = ConfigDB.openConnection();
         boolean idDelete = false;
 
         try {
-            String sql = "DELETE FROM flight WHERE id_flight = ?;";
+            String sql = "DELETE FROM reservation WHERE id_reservation = ?;";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
-            objPrepare.setInt(1,objFlight.getId_flight());
+            objPrepare.setInt(1,objReservation.getId_reservation());
             int totalRowAffected = objPrepare.executeUpdate();
             if (totalRowAffected > 0){
                 idDelete = true;
@@ -108,9 +112,4 @@ public class FlightModel implements CRUD {
         ConfigDB.closeConnection();
         return idDelete;
     }
-
-
-
-
-    }
-
+}
