@@ -112,4 +112,33 @@ public class ReservationModel implements CRUD {
         ConfigDB.closeConnection();
         return idDelete;
     }
+    public boolean verifyCapacity(int idVuelo){
+        Connection objConenction = ConfigDB.openConnection();
+        boolean avaible = false;
+        try{
+            String sql = "SELECT COUNT(*) AS total_reservation, flight.id_plane, plane.capacity\n" +
+                    "FROM reservation \n" +
+                    "INNER JOIN flight ON reservation.id_flight = flight.id_flight\n" +
+                    "INNER JOIN plane ON flight.id_plane = plane.id_plane\n" +
+                    "WHERE reservation.id_flight = ?;";
+            PreparedStatement objPrepare = objConenction.prepareStatement(sql);
+            objPrepare.setInt(1, idVuelo);
+            ResultSet objResult = objPrepare.executeQuery();
+            if (objResult.next()) {
+                int totalReservation = objResult.getInt("total_reservation");
+                int totalPlaneCapacity = objResult.getInt("capacity");
+                if (totalReservation >= totalPlaneCapacity) {
+                    JOptionPane.showMessageDialog(null, "This plane is full, please choose another.");
+                    return false;
+                }
+                return true;
+            }
+
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    return avaible;
+    }
+
+
 }

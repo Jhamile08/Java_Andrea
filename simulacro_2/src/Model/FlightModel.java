@@ -19,11 +19,12 @@ public class FlightModel implements CRUD {
         Connection objConnection = ConfigDB.openConnection();
         Flight objFlight = (Flight) obj;
         try {
-            String sql = "INSERT INTO flight(destination, departure_date, departure_time) VALUES(?,?,?);";
+            String sql = "INSERT INTO flight(destination, departure_date, departure_time, id_plane) VALUES(?,?,?,?);";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             objPrepare.setString(1, objFlight.getDestination());
             objPrepare.setString(2, objFlight.getDeparture_date());
             objPrepare.setString(3, objFlight.getDeparture_time());
+            objPrepare.setInt(4, objFlight.getId_plane());
             objPrepare.execute();
             ResultSet objRest = objPrepare.getGeneratedKeys();
             while(objRest.next()){
@@ -73,6 +74,7 @@ public class FlightModel implements CRUD {
             objPrepare.setString(2, objFlight.getDeparture_date());
             objPrepare.setString(3, objFlight.getDeparture_time());
             objPrepare.setInt(4, objFlight.getId_plane());
+            objPrepare.setInt(5, objFlight.getId_flight());
 
             int totalRowAffected = objPrepare.executeUpdate();
             if(totalRowAffected > 0){

@@ -44,7 +44,7 @@ public class FlightController {
                 option, option[0]
         );
         if(flightSelected == null){
-            JOptionPane.showMessageDialog(null, "Passenger not found");
+            JOptionPane.showMessageDialog(null, "Flight not found");
         }
         flightSelected.setDestination(JOptionPane.showInputDialog(null,"Enter the new flight's destination: ", flightSelected.getDestination()));
         flightSelected.setDeparture_date(JOptionPane.showInputDialog(null, "Insert the new flight's departure date: ", flightSelected.getDeparture_date()));

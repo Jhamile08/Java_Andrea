@@ -14,25 +14,41 @@ import javax.swing.*;
 
 public class ReservationController {
     public static void create(){
+        ReservationModel objReservation = new ReservationModel();
         PassengerModel objPassengerModel = new PassengerModel();
         FlightModel objFlightModel = new FlightModel();
     String reservation_time = JOptionPane.showInputDialog("Insert the reservation date(yyyy:mm:dd): ");
-    String seat = JOptionPane.showInputDialog("Insert the seat: ");
-    Object[] option = Utils.listToArray(objPassengerModel.findAll());
-    Passenger passengerSelected = (Passenger) JOptionPane.showInputDialog(null,"Select the passenger for this reservation: ",
-            "",
-            JOptionPane.QUESTION_MESSAGE,null,
-            option, option[0]
-    );
-    Object[] option2 = Utils.listToArray(objFlightModel.findAll());
-    Flight flightSelected = (Flight) JOptionPane.showInputDialog(null,"Select the flight for this reservation: ",
-            "",
-            JOptionPane.QUESTION_MESSAGE,null,
-            option2, option2[0]
-        );
-    Reservation instanceReservation = (Reservation) instanceModel().insert(new Reservation(reservation_time,seat,passengerSelected.getId_passenger(),flightSelected.getId_flight()));
-    JOptionPane.showMessageDialog(null,instanceReservation.info());
+        Flight flightSelected;
+   do {
+       Object[] option2 = Utils.listToArray(objFlightModel.findAll());
+        flightSelected = (Flight) JOptionPane.showInputDialog(null, "Select the flight for this reservation: ",
+               "",
+               JOptionPane.QUESTION_MESSAGE, null,
+               option2, option2[0]
+       );
+       if (flightSelected == null) {
+           //If the user cancel the flight
+           break;
+       }
 
+       boolean reservationValid = objReservation.verifyCapacity(flightSelected.getId_flight());
+       if (!reservationValid) {
+           flightSelected = null;
+       }
+   } while(flightSelected == null);
+        if (flightSelected != null) {
+            String seat = JOptionPane.showInputDialog("Insert the seat: ");
+
+            Object[] option = Utils.listToArray(objPassengerModel.findAll());
+            Passenger passengerSelected = (Passenger) JOptionPane.showInputDialog(null, "Select the passenger for this reservation: ",
+                    "",
+                    JOptionPane.QUESTION_MESSAGE, null,
+                    option, option[0]
+            );
+
+            Reservation instanceReservation = (Reservation) instanceModel().insert(new Reservation(reservation_time, seat, passengerSelected.getId_passenger(), flightSelected.getId_flight()));
+            JOptionPane.showMessageDialog(null, instanceReservation.info());
+        }
 }
     public static void getAll(){
         String listReservation = "Reservation list\n";

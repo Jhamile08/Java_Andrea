@@ -72,7 +72,8 @@ public class Flight {
     public String toString() {
         return "Destination : '" + destination + '\'' +
                 ", departure date : '" + departure_date + '\'' +
-                ", departure time : " + departure_time + '\''
+                ", departure time : " + departure_time + '\''+
+                ", id_plane=" + id_plane
                 ;
     }
 }
